@@ -1,6 +1,29 @@
-import { DidNotEnter } from "./DidNotEnter";
-import { HasEntered } from "./HasEntered";
+import { connect } from "react-redux";
+// import { DidNotEnter } from "./DidNotEnter";
+import HasEntered from "./HasEntered";
+import { getAuthorized } from "../../redux/authorization/authorization-selectors";
+import { NavLink } from "react-router-dom";
 
-export const Header = ({ authorized }) => {
-  return <>{authorized ? <HasEntered /> : <DidNotEnter />}</>;
+const Header = ({ authorized }) => {
+  return (
+    <>
+      {authorized ? (
+        <HasEntered />
+      ) : (
+        <ul>
+          <li>
+            <NavLink to={"/Registration"}>Registration</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/Login"}>sing in</NavLink>
+          </li>
+        </ul>
+      )}
+    </>
+  );
 };
+
+const mapStateToProps = (state) => ({
+  authorized: getAuthorized(state),
+});
+export default connect(mapStateToProps)(Header);

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import AddContact from "../AddContact";
 import Filter from "../Filter";
 import ContactList from "../ContactList";
-import { Header } from "../Header/Header";
+import Header from "../Header/Header";
 
 const PhoneBook = ({ logger }) => {
   return (

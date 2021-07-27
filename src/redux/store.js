@@ -1,5 +1,7 @@
 import contactReducer from "./contact/contact-reducer";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import authorizationReducer from "./authorization/authorization-reducer";
+
 import {
   FLUSH,
   REHYDRATE,
@@ -9,20 +11,18 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import logger from "redux-logger";
-
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
 ];
 
 const store = configureStore({
   reducer: {
     contact: contactReducer,
+    authorization: authorizationReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === "development",

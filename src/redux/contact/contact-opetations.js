@@ -12,7 +12,7 @@ import {
   fetchContactError,
 } from "./contact-action";
 
-axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
 
 export const addContact =
   ({ name, number }) =>
@@ -24,7 +24,7 @@ export const addContact =
       const { data } = await axios.post("/contact", contact);
       dispatch(addContactSuccess(data));
     } catch (error) {
-      dispatch(addContactError(error));
+      dispatch(addContactError(error.message));
     }
   };
 
