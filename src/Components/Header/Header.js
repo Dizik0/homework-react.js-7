@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 // import { DidNotEnter } from "./DidNotEnter";
 import HasEntered from "./HasEntered";
-import { getAuthorized } from "../../redux/authorization/authorization-selectors";
+import { authorized } from "../../redux/authorization/authorization-selectors";
 import { NavLink } from "react-router-dom";
 
 const Header = ({ authorized }) => {
@@ -24,6 +24,6 @@ const Header = ({ authorized }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authorized: getAuthorized(state),
+  authorized: authorized(state),
 });
 export default connect(mapStateToProps)(Header);

@@ -8,7 +8,7 @@ export const loginReauest = createAction("/authorization/loginReauest");
 export const loginSuccsess = createAction("/authorization/loginSuccsess");
 export const loginError = createAction("/authorization/loginError");
 
-export const logoutReauest = createAction("/authorization/logoutReauest");
+export const logoutRequest = createAction("/authorization/logoutReauest");
 export const logoutSuccsess = createAction("/authorization/logoutSuccsess");
 export const logoutError = createAction("/authorization/logoutError");
 

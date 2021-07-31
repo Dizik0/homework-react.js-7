@@ -54,7 +54,6 @@ class Registration extends Component {
               name="password"
               value={password}
               onChange={this.getValueInput}
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Пароль должен состоять из цифр и букв"
               required
             />

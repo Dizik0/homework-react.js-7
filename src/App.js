@@ -1,31 +1,51 @@
 import "./App.css";
-
-import { NavLink, Route, Switch } from "react-router-dom";
-
+import { Component } from "react";
 import PhoneBook from "./Components/PhoneBook/PhoneBook";
-
 import Registration from "./Components/Route/Registration";
 import Login from "./Components/Route/Login";
+import { connect } from "react-redux";
+import { getCurrentUser } from "./redux/authorization/authorization-opetations";
+import PrivateRoute from "./Components/Route/PrivateRoute";
+import PublicRoute from "./Components/Route/PublicRoute";
+
 import Header from "./Components/Header/Header";
+import { NavLink, Switch } from "react-router-dom";
 
-/* <PhoneBook />; */
+class App extends Component {
+  componentDidMount() {
+    this.props.onGetCurrentUser();
+  }
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <ul>
-        <li>
-          <NavLink to={"/"}>Home</NavLink>
-        </li>
-      </ul>
-      <Switch>
-        <Route exact path="/" component={PhoneBook} />
-        <Route path="/Registration" component={Registration} />
-        <Route path="/Login" component={Login} />
-      </Switch>
-    </>
-  );
+  render() {
+    return (
+      <>
+        <Header />
+        <ul>
+          <li>
+            <NavLink to="/">PhoneBook</NavLink>
+          </li>
+        </ul>
+        <Switch>
+          <PrivateRoute exact path="/" component={PhoneBook} />
+          <PublicRoute
+            path="/Registration"
+            restricted
+            component={Registration}
+          />
+          <PublicRoute
+            path="/Login"
+            redirectTo="/"
+            restricted
+            component={Login}
+          />
+        </Switch>
+      </>
+    );
+  }
+}
+
+const mapDispatchToProps = {
+  onGetCurrentUser: getCurrentUser,
 };
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);

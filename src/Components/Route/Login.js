@@ -32,6 +32,7 @@ class Login extends Component {
               value={email}
               title="Enter your email"
               onChange={this.getValueInput}
+              required
             />
           </label>
           <label>
@@ -41,8 +42,7 @@ class Login extends Component {
               name="password"
               value={password}
               onChange={this.getValueInput}
-              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Пароль должен состоять из цифр и букв"
+              title="Enter your password"
               required
             />
           </label>
