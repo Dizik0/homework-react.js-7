@@ -13,6 +13,9 @@ import {
   getContactsSuccsess,
   getContactsError,
 } from "./authorization-actions";
+import "@pnotify/core/dist/BrightTheme.css";
+import { success, error } from "@pnotify/core";
+import "@pnotify/core/dist/PNotify.css";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
@@ -32,8 +35,18 @@ export const register = (user) => async (dispatch) => {
     const { data } = await axios.post("/users/signup", user);
     token.set(data.token);
     dispatch(registerSuccsess(data));
-  } catch (error) {
-    dispatch(registerError(error.message));
+    success({ text: "Created!" });
+  } catch (errors) {
+    if (errors.response.status === 400) {
+      error({
+        text: "ERROR, user creation error",
+      });
+    } else if (errors.response.status === 500) {
+      error({
+        text: "ERROR server",
+      });
+    }
+    dispatch(registerError(errors.payload));
   }
 };
 
@@ -44,8 +57,13 @@ export const login = (user) => async (dispatch) => {
     const { data } = await axios.post("/users/login", user);
     token.set(data.token);
     dispatch(loginSuccsess(data));
-  } catch (error) {
-    dispatch(loginError(error.message));
+    success({ text: "Success!" });
+  } catch (errors) {
+    error({
+      text: "ERROR, wrong login or password",
+    });
+
+    // dispatch(loginError(errors.payload));
   }
 };
 
@@ -58,8 +76,12 @@ export const logout = () => async (dispatch) => {
     token.unset();
 
     dispatch(logoutSuccsess());
-  } catch (error) {
-    dispatch(logoutError(error.message));
+  } catch (errors) {
+    error({
+      text: "ERROR, failed to exit",
+    });
+
+    dispatch(logoutError(errors.payload));
   }
 };
 
@@ -79,7 +101,10 @@ export const getCurrentUser = () => async (dispatch, getState) => {
     const { data } = await axios.get("/users/current");
 
     dispatch(getContactsSuccsess(data));
-  } catch (error) {
-    getContactsError(error.message);
+  } catch (errors) {
+    error({
+      text: "ERROR, the request failed",
+    });
+    dispatch(getContactsError(errors.payload));
   }
 };

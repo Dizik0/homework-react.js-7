@@ -1,6 +1,6 @@
 import "./App.css";
 import { Component } from "react";
-import PhoneBook from "./Components/PhoneBook/PhoneBook";
+import { PhoneBook } from "./Components/PhoneBook";
 import Registration from "./Components/Route/Registration";
 import Login from "./Components/Route/Login";
 import { connect } from "react-redux";
@@ -9,7 +9,9 @@ import PrivateRoute from "./Components/Route/PrivateRoute";
 import PublicRoute from "./Components/Route/PublicRoute";
 
 import Header from "./Components/Header/Header";
-import { NavLink, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import { loading } from "./redux/authorization/authorization-selectors";
+import { Preloader } from "./Components/Preloader/";
 
 class App extends Component {
   componentDidMount() {
@@ -20,7 +22,7 @@ class App extends Component {
     return (
       <>
         <Header />
-
+        {this.props.logger && <Preloader />}
         <Switch>
           <PrivateRoute exact path="/" component={PhoneBook} />
 
@@ -47,4 +49,8 @@ const mapDispatchToProps = {
   onGetCurrentUser: getCurrentUser,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => ({
+  logger: loading(state),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

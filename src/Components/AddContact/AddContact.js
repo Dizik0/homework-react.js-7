@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 import { addContact } from "../../redux/contact/contact-opetations";
 import { getContacts } from "../../redux/contact/contact-selectors";
 
+import "@pnotify/core/dist/BrightTheme.css";
+import { notice } from "@pnotify/core";
+import "@pnotify/core/dist/PNotify.css";
+
 class AddContact extends Component {
   state = {
     name: "",
@@ -22,7 +26,7 @@ class AddContact extends Component {
     e.preventDefault();
 
     if (this.alerError()) {
-      alert(`${this.state.name} is alreaady in contacts`);
+      notice({ text: `${this.state.name} is alreaady in contacts` });
       return;
     }
     this.props.stateTransfer(this.state);

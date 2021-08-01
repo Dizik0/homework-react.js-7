@@ -1,12 +1,16 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  registerReauest,
   registerSuccsess,
   registerError,
+  loginReauest,
   loginSuccsess,
   loginError,
+  logoutRequest,
   logoutSuccsess,
   logoutError,
+  getContactsReauest,
   getContactsSuccsess,
   getContactsError,
 } from "./authorization-actions";
@@ -43,7 +47,23 @@ const authorization = createReducer(false, {
   [getContactsError]: () => false,
 });
 
+const loadingLogReg = createReducer(false, {
+  [registerReauest]: () => true,
+  [registerSuccsess]: () => false,
+  [registerError]: () => false,
+  [loginReauest]: () => true,
+  [loginSuccsess]: () => false,
+  [loginError]: () => false,
+  [logoutRequest]: () => true,
+  [logoutSuccsess]: () => false,
+  [logoutError]: () => false,
+  [getContactsReauest]: () => true,
+  [getContactsSuccsess]: () => false,
+  [getContactsError]: () => false,
+});
+
 export default combineReducers({
+  loadingLogReg,
   authorization,
   user,
   token,

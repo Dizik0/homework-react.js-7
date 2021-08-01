@@ -11,6 +11,9 @@ import {
   fetchContactSuccess,
   fetchContactError,
 } from "./contact-action";
+import "@pnotify/core/dist/BrightTheme.css";
+import { error } from "@pnotify/core";
+import "@pnotify/core/dist/PNotify.css";
 
 export const addContact =
   ({ name, number }) =>
@@ -22,8 +25,13 @@ export const addContact =
       const { data } = await axios.post("/contacts", contact);
 
       dispatch(addContactSuccess(data));
-    } catch (error) {
-      dispatch(addContactError(error.message));
+    } catch (errors) {
+      if (errors.response.status === 400) {
+        error({
+          text: "ERROR, Contact creation error",
+        });
+      }
+      dispatch(addContactError(errors.message));
     }
   };
 
@@ -34,8 +42,17 @@ export const deleteContact = (id) => async (dispatch) => {
     await axios.delete(`/contacts/${id}`);
 
     dispatch(deleteContactSuccess(id));
-  } catch (error) {
-    dispatch(deleteContactError(error.message));
+  } catch (errors) {
+    if (errors.response.status === 404) {
+      error({
+        text: "ERROR, there is no such owner's collection",
+      });
+    } else if (errors.response.status === 500) {
+      error({
+        text: "ERROR server",
+      });
+    }
+    dispatch(deleteContactError(errors.message));
   }
 };
 
@@ -46,7 +63,16 @@ export const fetchContact = () => async (dispatch) => {
     const { data } = await axios.get("/contacts");
 
     dispatch(fetchContactSuccess(data));
-  } catch (error) {
-    dispatch(fetchContactError(error.message));
+  } catch (errors) {
+    if (errors.response.status === 404) {
+      error({
+        text: "ERROR, there is no such owner's collection",
+      });
+    } else if (errors.response.status === 500) {
+      error({
+        text: "ERROR server",
+      });
+    }
+    dispatch(fetchContactError(errors.message));
   }
 };

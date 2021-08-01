@@ -2,6 +2,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../redux/authorization/authorization-opetations";
 import style from "./login.module.scss";
+
 class Login extends Component {
   state = {
     email: "",
