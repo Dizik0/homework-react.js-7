@@ -1,6 +1,6 @@
-1. операция register dispatc axios
-2. mapto props
-3. reduser
+1. loading
+2. описать ошибки
+3.
 4.
 5.
 6.

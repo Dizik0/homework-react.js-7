@@ -22,6 +22,13 @@
   border-radius: 10px;
   margin-left: auto;
   margin-right: 0;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  color: white;
+  background-color: rgb(209, 91, 142);
 }
 
 .name {

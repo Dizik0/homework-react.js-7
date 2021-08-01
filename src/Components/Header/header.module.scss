@@ -1,0 +1,23 @@
+.BoxLoginRegistration {
+  display: flex;
+  justify-content: center;
+  margin-left: 50px;
+}
+
+.LoginRegistration {
+  margin-right: 50px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.LoginRegistration:hover,
+.LoginRegistration:focus {
+  color: rgb(209, 91, 142);
+}
+
+.active {
+  color: rgb(209, 91, 142);
+}

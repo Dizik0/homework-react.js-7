@@ -69,7 +69,7 @@ class AddContact extends Component {
               required
             />
           </label>
-          <button className={style.buttom} type="submit">
+          <button className={style.button} type="submit">
             Add contact
           </button>
         </div>

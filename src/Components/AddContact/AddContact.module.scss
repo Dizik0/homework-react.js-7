@@ -59,19 +59,18 @@
   background: rgba(255, 255, 255, 0.2);
   font-family: "Roboto", sans-serif;
 }
-.formInner input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-}
 
-.formInner input[type="submit"] {
-  background: #1762ee;
-}
-
-.buttom {
+.button {
   background: rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.6);
   border: none;
   padding: 15px;
   border-radius: 20px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  color: white;
+  background-color: rgb(209, 91, 142);
 }

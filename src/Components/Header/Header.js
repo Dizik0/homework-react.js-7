@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HasEntered from "./HasEntered";
 import { authorized } from "../../redux/authorization/authorization-selectors";
 import { NavLink } from "react-router-dom";
+import style from "./header.module.scss";
 
 const Header = ({ authorized }) => {
   return (
@@ -10,12 +11,24 @@ const Header = ({ authorized }) => {
       {authorized ? (
         <HasEntered />
       ) : (
-        <ul>
+        <ul className={style.BoxLoginRegistration}>
           <li>
-            <NavLink to={"/Registration"}>Registration</NavLink>
+            <NavLink
+              to={"/Registration"}
+              activeClassName={style.active}
+              className={style.LoginRegistration}
+            >
+              Registration
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/Login"}>sing in</NavLink>
+            <NavLink
+              to={"/Login"}
+              activeClassName={style.active}
+              className={style.LoginRegistration}
+            >
+              sing in
+            </NavLink>
           </li>
         </ul>
       )}

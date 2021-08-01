@@ -20,15 +20,14 @@ class App extends Component {
     return (
       <>
         <Header />
-        <ul>
-          <li>
-            <NavLink to="/">PhoneBook</NavLink>
-          </li>
-        </ul>
+
         <Switch>
           <PrivateRoute exact path="/" component={PhoneBook} />
+
           <PublicRoute
+            class
             path="/Registration"
+            redirectTo="/"
             restricted
             component={Registration}
           />

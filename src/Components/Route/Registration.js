@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { register } from "../../redux/authorization/authorization-opetations";
-
+import style from "./registation.module.scss";
 class Registration extends Component {
   state = {
     name: "",
@@ -23,11 +23,12 @@ class Registration extends Component {
   render() {
     const { name, email, password } = this.state;
     return (
-      <div>
-        <form onSubmit={this.submitForm}>
-          <label>
+      <div className={style.boxForm}>
+        <form onSubmit={this.submitForm} className={style.form}>
+          <label className={style.label}>
             Name
             <input
+              className={style.input}
               type="name"
               name="name"
               onChange={this.getValueInput}
@@ -37,9 +38,10 @@ class Registration extends Component {
               required
             />
           </label>
-          <label>
+          <label className={style.label}>
             Email
             <input
+              className={style.input}
               type="email"
               name="email"
               value={email}
@@ -47,9 +49,10 @@ class Registration extends Component {
               title="Enter your email"
             />
           </label>
-          <label>
+          <label className={style.label}>
             Password
             <input
+              className={style.input}
               type="password"
               name="password"
               value={password}
@@ -58,7 +61,9 @@ class Registration extends Component {
               required
             />
           </label>
-          <button type="submit">register</button>
+          <button type="submit" className={style.button}>
+            Register
+          </button>
         </form>
       </div>
     );
